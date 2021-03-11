@@ -1,0 +1,32 @@
+#include<cstdio>
+#include<iostream>
+#include<string>
+#include<fstream>
+
+using namespace std;
+
+int main(){
+	string str[200][3];
+	ifstream yq("D://se/02/yq_in.txt");
+	ofstream yqout("D://se/02/yq_out.txt", ios::trunc);
+	if (!yq.is_open()){
+		cout << "can not open this file" << endl;
+		return 0;
+	}
+	for (int i = 0; i < 200; i++){
+		for (int j = 0; j < 3; j++){
+			yq >> str[i][j];
+		}
+	}
+	yqout << str[0][0] << endl;
+	for (int i = 0; i < 200; i++){
+		if(str[i][0] != str[i + 1][0]){
+	//		yqout << str[i][0] << "      " << str[i][1] << "        " << str[i][2] << endl;
+			yqout << "\n" << str[i + 1][0] << endl;
+		}
+		yqout  << str[i + 1][1] << "        " << str[i + 1][2] << endl;	
+	}
+	yq.close();
+	yqout.close();
+	return 0;
+}
